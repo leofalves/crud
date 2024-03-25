@@ -1,5 +1,6 @@
 package io.alveslf.crud.domain.product;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -10,7 +11,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "product")
-public class Product {
+public class Product implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
@@ -71,5 +74,10 @@ public class Product {
 			return false;
 		Product other = (Product) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + "]";
 	}
 }

@@ -1,5 +1,7 @@
 package io.alveslf.crud.domain.product;
 
-public record RequestProduct(String name, Double price) {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
+public record RequestProduct(String id, @NotBlank String name, @NotNull Double price) {
 }
