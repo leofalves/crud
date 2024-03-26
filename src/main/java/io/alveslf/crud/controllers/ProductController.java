@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.alveslf.crud.domain.product.Product;
 import io.alveslf.crud.domain.product.ProductRepository;
 import io.alveslf.crud.domain.product.RequestProduct;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -52,7 +53,7 @@ public class ProductController {
 			repository.save(product);
 			return ResponseEntity.ok(product);
 		}
-		return ResponseEntity.notFound().build();
+		throw new EntityNotFoundException();
 	}
 	
 	@DeleteMapping("/{id}")
