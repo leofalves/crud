@@ -20,19 +20,29 @@ public class Product implements Serializable{
 	private String id;
 	private String name;
 	private Double price;
+	private Boolean active;
 
 	public Product() {
 	}
 
+	public Product(String id, String name, Double price, Boolean active) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.active = active;
+	}
+	
 	public Product(String id, String name, Double price) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
+		this.active = true;
 	}
 	
 	public Product(RequestProduct requestProduct) {
 		this.name = requestProduct.name();
 		this.price = requestProduct.price();
+		this.active = true;
 	}
 
 	public String getId() {
@@ -79,5 +89,13 @@ public class Product implements Serializable{
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", price=" + price + "]";
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 }
