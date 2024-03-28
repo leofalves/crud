@@ -14,7 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+ 
 @Entity(name = "users")
 @Table(name = "users")
 public class User implements UserDetails, Serializable {
@@ -23,7 +23,7 @@ public class User implements UserDetails, Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
-	private String id;
+	private String id; 
 	private String login;
 	private String password;
 	private UserRole role;
@@ -32,13 +32,19 @@ public class User implements UserDetails, Serializable {
 	}
 
 	public User(String id, String login, String password, UserRole role) {
-		super();
 		this.id = id;
 		this.login = login;
 		this.password = password;
 		this.role = role;
 	}
 
+	public User(String login, String password, UserRole role) {
+		this.login = login;
+		this.password = password;
+		this.role = role;
+	}
+
+	
 	public String getId() {
 		return id;
 	}
@@ -96,31 +102,26 @@ public class User implements UserDetails, Serializable {
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
-		return login;
+		return this.login;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	
